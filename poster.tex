@@ -1,0 +1,198 @@
+\documentclass[landscape,a0b,final]{a0poster}
+
+% Useful Packages
+\usepackage{stix}
+\usepackage{epsfig}
+\usepackage{multicol}
+\usepackage{pstricks,pst-grad}
+\usepackage{minted}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of some variables and colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\columnsep}{3cm}
+\setlength{\columnseprule}{2mm}
+\setlength{\parindent}{0.0cm}
+
+% Useful Commands
+\newcommand{\code}[1]{\mintinline{bash}{#1}}
+\newcommand{\myurl}[2]{\href{#1}{\color{blue}{#2}}}
+\newcommand{\pygment}[3]{\inputminted[bgcolor=lightgray,linenos,fontsize=#1]{#2}{#3}}
+\newcommand{\ig}[2]{\includegraphics[width=#1\linewidth]{#2}}
+
+\newcommand{\background}[3]{
+  \newrgbcolor{cgradbegin}{#1}
+  \newrgbcolor{cgradend}{#2}
+  \psframe[fillstyle=gradient,gradend=cgradend,
+  gradbegin=cgradbegin,gradmidpoint=#3](0.,0.)(1.\textwidth,-1.\textheight)
+}
+
+\newenvironment{poster}{
+  \begin{center}
+  \begin{minipage}[c]{0.981\textwidth}
+}{
+  \end{minipage} 
+  \end{center}
+}
+
+\newenvironment{pcolumn}[1]{
+  \begin{minipage}{#1\textwidth}
+  \begin{center}
+}{
+  \end{center}
+  \end{minipage}
+}
+
+\newcommand{\pbox}[4]{
+\psshadowbox[#3]{
+\begin{minipage}[t][#2][t]{#1}
+#4
+\end{minipage}
+}}
+
+\newcommand{\myfig}[3][0]{
+\begin{center}
+  \vspace{0.25cm}
+  \includegraphics[width=#3\hsize,angle=#1]{#2}
+  \nobreak\medskip
+\end{center}}
+
+\setcounter{figure}{1}
+\newcommand{\mycaption}[1]{
+  \vspace{0.25cm}
+  \begin{quote}
+    {{\sc Figure} \arabic{figure}: #1}
+  \end{quote}
+  \vspace{0.25cm}
+  \stepcounter{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Begin of Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%\newrgbcolor{pittblue}{0. .21 .58}
+%\newrgbcolor{pittgold}{1. .72 .11}
+\newrgbcolor{pittblue}{.11 .16 .34}
+\newrgbcolor{pittgold}{.80 .72 .49}
+\newrgbcolor{white}{1. 1. 1.}
+
+\background{1. 1. 1.}{1. 1. 1.}{0.5}
+
+\vspace*{0.25cm} %Controls white space on top of poster
+
+\begin{poster}
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Header
+%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\begin{pcolumn}{0.98}
+
+\pbox{0.98\textwidth}{}{linewidth=1.75mm,framearc=0.3,linecolor=pittblue,fillstyle=gradient,gradangle=0,gradbegin=pittgold,gradend=pittgold,gradmidpoint=1.0,framesep=1em}{
+    %%% Unisiegel
+    %%% Titel
+    \begin{minipage}[c][7cm][c]{0.98\textwidth}
+    \begin{center}
+        \color{black}{
+        %hspace commands control centering of title above poster. You may need to mess with these depending on how long your title is.
+        \hspace{5cm}
+        {\sc \huge Quick Summary}\\[5mm] 
+        \hspace{5cm}
+        {\sc \huge Center for Research Computing\\[7.5mm]
+        \hspace{5cm}
+        {\sc \huge University of Pittsburgh}}
+        }
+    \end{center}
+    \end{minipage}
+}
+\end{pcolumn}
+\end{center}
+
+\vspace*{0.05cm} %Spacing between banner and text
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Content
+%%%%%%%%%%%%%%%%%%%%%
+
+%%% Begin of Multicols-Enviroment
+\begin{multicols}{3}
+
+%%% Access
+\begin{center}\pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.3,linecolor=pittgold,fillstyle=gradient,gradangle=0,gradbegin=pittblue,gradend=pittblue,gradmidpoint=1.0,framesep=1em}{\begin{center} \Large \color{white}{\bf{Access}}\end{center}}\end{center} %Makes the Abstract banner 
+\vspace{0.25cm}
+    \large    
+    \begin{center}
+        \begin{itemize}
+            \item Request an Account
+            \item Logging In
+            \item Storage
+        \end{itemize}
+    \end{center}
+
+%%% Common Commands
+\begin{center}\pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.3,linecolor=pittgold,fillstyle=gradient,gradangle=0,gradbegin=pittblue,gradend=pittblue,gradmidpoint=1.0,framesep=1em}{\begin{center} \Large \color{white}{\bf{Common Commands}}\end{center}}\end{center} %Makes the Abstract banner 
+\vspace{0.25cm}
+    \large    
+    \begin{center}
+        \begin{itemize}
+            \item Connecting to H2P/HTC
+            \item Transferring Data
+            \item Access to Software
+        \end{itemize}
+    \end{center}
+
+%%% Getting Help
+\begin{center}\pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.3,linecolor=pittgold,fillstyle=gradient,gradangle=0,gradbegin=pittblue,gradend=pittblue,gradmidpoint=1.0,framesep=1em}{\begin{center} \Large \color{white}{\bf{Getting Help}}\end{center}}\end{center} %Makes the Abstract banner 
+\vspace{0.25cm}
+    \large    
+    \begin{center}
+        \begin{itemize}
+            \item Connecting to H2P/HTC
+            \item Transferring Data
+            \item Access to Software
+        \end{itemize}
+    \end{center}
+
+%%% Scheduling Jobs
+\begin{center}\pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.3,linecolor=pittgold,fillstyle=gradient,gradangle=0,gradbegin=pittblue,gradend=pittblue,gradmidpoint=1.0,framesep=1em}{\begin{center} \Large \color{white}{\bf{Scheduling Jobs}}\end{center}}\end{center} %Makes the Abstract banner 
+\vspace{0.25cm}
+    \large    
+    \begin{center}
+        \begin{itemize}
+            \item Charging on HTC/H2P
+            \item Queues and Limitations
+            \item Basic CRC Wrapper Commands
+            \item Job Status Codes
+            \item Basic Example
+        \end{itemize}
+    \end{center}
+
+%%% Slurm Script Description
+\begin{center}\pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.3,linecolor=pittgold,fillstyle=gradient,gradangle=0,gradbegin=pittblue,gradend=pittblue,gradmidpoint=1.0,framesep=1em}{\begin{center} \Large \color{white}{\bf{Slurm Script Description}}\end{center}}\end{center} %Makes the Abstract banner 
+\vspace{0.25cm}
+    \large    
+    \begin{center}
+        \begin{itemize}
+            \item Example Slurm Script
+        \end{itemize}
+    \end{center}
+
+%%% Notes
+\begin{center}\pbox{0.8\columnwidth}{}{linewidth=2mm,framearc=0.3,linecolor=pittgold,fillstyle=gradient,gradangle=0,gradbegin=pittblue,gradend=pittblue,gradmidpoint=1.0,framesep=1em}{\begin{center} \Large \color{white}{\bf{Notes}}\end{center}}\end{center} %Makes the Abstract banner 
+\vspace{0.25cm}
+    \large    
+    \begin{center}
+        \begin{itemize}
+            \item Acronyms
+            \item Get source code
+        \end{itemize}
+    \end{center}
+
+\end{multicols}
+
+\end{poster}
+\end{document}
+

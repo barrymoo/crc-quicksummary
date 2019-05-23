@@ -1,0 +1,13 @@
+#!/bin/bash
+
+rm *bbl *aux *blg
+
+latexfile=`echo $1 | sed 's/\.tex//'`
+
+latex -shell-escape $latexfile
+bibtex $latexfile
+latex -shell-escape $latexfile
+latex -shell-escape $latexfile
+
+dvips -Ppdf $latexfile.dvi -o $latexfile.ps
+ps2pdf $latexfile.ps $latexfile.pdf

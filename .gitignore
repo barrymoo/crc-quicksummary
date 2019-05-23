@@ -1,0 +1,9 @@
+*.aux
+*.bbl
+*.bib
+*.blg
+*.dvi
+*.log
+*.pdf
+*.ps
+_minted-poster/
