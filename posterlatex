@@ -9,5 +9,6 @@ bibtex $latexfile
 latex -shell-escape $latexfile
 latex -shell-escape $latexfile
 
-dvips -Ppdf $latexfile.dvi -o $latexfile.ps
-ps2pdf $latexfile.ps $latexfile.pdf
+#dvips -Ppdf $latexfile.dvi -o $latexfile.ps
+#ps2pdf $latexfile.ps $latexfile.pdf
+dvipdf $latexfile.dvi $latexfile.pdf

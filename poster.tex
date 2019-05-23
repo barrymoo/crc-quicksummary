@@ -6,6 +6,8 @@
 \usepackage{multicol}
 \usepackage{pstricks,pst-grad}
 \usepackage{minted}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definition of some variables and colors
@@ -16,14 +18,14 @@
 
 % Useful Commands
 \newcommand{\code}[1]{\mintinline{bash}{#1}}
-\newcommand{\myurl}[2]{\href{#1}{\color{blue}{#2}}}
+\newcommand{\myurl}[1]{\href{#1}{\color{blue}{#1}}}
 \newcommand{\pygment}[3]{\inputminted[bgcolor=lightgray,linenos,fontsize=#1]{#2}{#3}}
 \newcommand{\ig}[2]{\includegraphics[width=#1\linewidth]{#2}}
 \newcommand{\mysection}[1]{
     \begin{center}
-        \pbox{0.8\columnwidth}{}{linewidth=3mm,framearc=0.3,linecolor=pittgold,fillstyle=gradient,gradangle=0,gradbegin=pittblue,gradend=pittblue,gradmidpoint=1.0,framesep=1em}{
+        \pbox{0.8\columnwidth}{}{linewidth=3mm,framearc=0.3,linecolor=black,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=0.5em}{
             \begin{center}
-                \huge\color{white}{\bf{#1}}
+                \Large\color{black}{\bf{#1}}
             \end{center}
         }
     \end{center}
@@ -86,6 +88,7 @@
 \newrgbcolor{pittblue}{.11 .16 .34}
 \newrgbcolor{pittgold}{.80 .72 .49}
 \newrgbcolor{white}{1. 1. 1.}
+\newrgbcolor{black}{0. 0. 0.}
 
 \background{1. 1. 1.}{1. 1. 1.}{0.5}
 
@@ -99,7 +102,7 @@
 \begin{center}
 \begin{pcolumn}{0.98}
 
-\pbox{0.98\textwidth}{}{linewidth=1.75mm,framearc=0.3,linecolor=pittblue,fillstyle=gradient,gradangle=0,gradbegin=pittgold,gradend=pittgold,gradmidpoint=1.0,framesep=1em}{
+\pbox{0.98\textwidth}{}{linewidth=1.75mm,framearc=0.3,linecolor=black,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
     \begin{minipage}[c][7cm][c]{0.98\textwidth}
     \begin{center}
         \color{black}{
@@ -125,62 +128,160 @@
 %%% Begin of Multicols-Enviroment
 \begin{multicols}{3}
 
-    \mysection{Access}
+    \mysection{Useful Links}
     \Large
     \begin{center}
         \begin{itemize}
-            \item Request an Account
-            \item Logging In
-            \item Storage
+            \item H2P Documentation: \\
+                \myurl{https://crc.pitt.edu/h2p}
+            \item HTC Documentation: \\
+                \myurl{https://crc.pitt.edu/htc}
+            \item Submit a Ticket: \\
+                \myurl{https://crc.pitt.edu/ticket}
+            \item CRC Status: \\
+                \myurl{https://crc.pitt.edu/status}
+            \item Proposals, Renewals, and Allocations: \\
+                \myurl{https://crc.pitt.edu/apply}
+            \item Hardware Description: \\
+                \myurl{https://crc.pitt.edu/Resource-Description-Proposal-Language}
         \end{itemize}
     \end{center}
 
-    \mysection{Common Commands}
+    \vspace{0.1cm}
+    \mysection{Access Environments}
+    \Large
+    \begin{center}
+        \begin{itemize}
+            \item Login Nodes: \code{h2p.crc.pitt.edu} or \code{htc.crc.pitt.edu}
+            \item Jupyter Notebooks: \myurl{https://hub.crc.pitt.edu}
+            \item Vizualization: \myurl{https://viz.crc.pitt.edu}
+            \item Open OnDemand: \myurl{...}
+            \item Galaxy: \myurl{...}
+            \item CLC Genomics: \myurl{...}
+        \end{itemize}
+    \end{center}
+
+    \vspace{0.1cm}
+    \mysection{Storage}
     \Large    
     \begin{center}
         \begin{itemize}
-            \item Connecting to H2P/HTC
-            \item Transferring Data
-            \item Access to Software
+            \item Mount points and quotas:
+            \begin{itemize}
+                \item Isilon (75G per user) \code{/ihome}
+                \item ZFS (5TB per group) \code{/zfs1} or \code{/zfs2}
+                \item BGFS (5TB per group) \code{/bgfs}
+            \end{itemize}
+            \item Policies:
+            \begin{itemize}
+                \item Your home directory will be located in \code{/ihome} and is backed up
+                \item BGFS and ZFS are \textbf{not} backed up
+                \item Each group can have up to 5TB on BGFS or ZFS for free
+                \item To get access to BGFS or ZFS submit a ticket
+            \end{itemize}
         \end{itemize}
     \end{center}
 
+    \vspace{0.1cm}
+    \mysection{Useful Commands}
+    \Large    
+    \begin{center}
+        \begin{itemize}
+            \item Connect via secure shell \code{ssh <username>@h2p.crc.pitt.edu}
+            \item Transferring data:
+            \begin{itemize}
+                \item \code{scp <file> <username>@h2p.crc.pitt.edu:~ # local to remote}
+                \item \code{scp <username>@h2p.crc.pitt.edu:~/<file> . # remote to local}
+            \end{itemize}
+            \item Check your filesystem quotas: \code{crc-quota.py}
+            \item Check your service units quotas: \code{crc-usage.pl}
+            \item Check the cluster status: \code{crc-sinfo.py}
+        \end{itemize}
+    \end{center}
+
+    \vspace{0.1cm}
+    \mysection{Software}
+    \Large    
+    \begin{center}
+        \begin{itemize}
+            \item Search all available software: \code{module spider # Use '/' for search, 'q' quits}
+            \item Load a module: \code{module load <module>}
+            \item List loaded modules: \code{module list}
+            \item Purge your modules: \code{module purge}
+        \end{itemize}
+    \end{center}
+
+    \vspace{0.1cm}
     \mysection{Getting Help}
     \Large    
     \begin{center}
         \begin{itemize}
-            \item Connecting to H2P/HTC
-            \item Transferring Data
-            \item Access to Software
+            \item When submitting a support ticket:
+                \begin{itemize}
+                    \item Use a descriptive and specific title
+                        \begin{itemize}
+                            \item Bad: Command doesn't work
+                            \item Good: Gaussian is failing with <abbreviated error here>
+                        \end{itemize}
+                    \item Provide enough information for us to reproduce your problem, e.g.
+                        \begin{itemize}
+                            \item The input and output file with exact paths
+                        \end{itemize}
+                \end{itemize}
+            \item CRC Consultants with Expertise
+                \begin{itemize}
+                    \item Kim Wong: Molecular Dynamics | Agent-based Modeling
+                    \item Fangping Mu: Bioinformatics | Computational Biology/Genomics
+                    \item Barry Moore II: Computational Chemistry | Deep Learning
+                    \item Shervin Sammak: Computational Fluid Dynamics
+                    \item Leonardo Bernasconi: Computational Chemistry
+                \end{itemize}
+            \item Comments and suggestions for improvement can be submitted at
+                \myurl{https://crc.pitt.edu/contact}
         \end{itemize}
     \end{center}
 
-    \mysection{Getting Help}
+    \vspace{0.1cm}
+    \mysection{Slurm Jobs}
     \Large    
     \begin{center}
         \begin{itemize}
-            \item Charging on HTC/H2P
-            \item Queues and Limitations
-            \item Basic CRC Wrapper Commands
-            \item Job Status Codes
-            \item Basic Example
+            \item Show your jobs only: \code{crc-squeue.py}
+            \item Cancel a job: \code{crc-scancel.py <jobid>}
+            \item Submit an interactive job: \code{crc-interactive.py -s}
+            \item Submit a batch job: \code{sbatch <file>}
+            \item Example job scripts, browse \code{/ihome/crc/how_to_run}
+            \item Description of \code{sbatch} arguments:
+            \begin{itemize}
+                \item \code{--job-name}: This name shows up in \code{crc-squeue.py}
+                \item \code{--output}: Standard input/output will be written to this file
+                \item \code{--time}: How long your job will run for \\
+                    (format: \code{[days-]hours:minutes:seconds}
+                \item \code{--nodes}: How many nodes your job needs
+                \item \code{--ntasks-per-node}: How many MPI processes your job
+                    needs per node, pro tip: if you don't know what this means
+                    it should be equal to 1
+                \item \code{--cpus-per-task}: Either the number of cores or OpenMP threads
+                \item \code{--cluster}: Run on this cluster, try \code{crc-sinfo.py} to see clusters
+                \item \code{--partition}: Run on this partition, try \code{crc-sinfo.py} to see partitions
+                \item \code{--mail-user}: Set to your Pitt email address to get updates (optional), pair with \code{--mail-type=END,FAIL}
+            \end{itemize}
+            \item Reasons from \code{crc-squeue.py}
+                \begin{itemize}
+                    \item \code{Priority}: You are waiting in line
+                    \item ...
+                \end{itemize}
         \end{itemize}
     \end{center}
 
-    \mysection{Slurm Script Description}
-    \Large    
-    \begin{center}
-        \begin{itemize}
-            \item Example Slurm Script
-        \end{itemize}
-    \end{center}
-
+    \vspace{0.1cm}
     \mysection{Notes}
     \Large    
     \begin{center}
         \begin{itemize}
-            \item Acronyms
-            \item Get source code
+            \item Is something not working? \myurl{https://crc.pitt.edu/tickets}
+            \item Suggestion or improvement for this document: \\
+                \myurl{https://github.com/barrymoo/crc-quicksummary/issues/new}
         \end{itemize}
     \end{center}
 
