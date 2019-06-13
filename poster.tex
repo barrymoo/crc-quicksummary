@@ -144,6 +144,10 @@
                 \myurl{https://crc.pitt.edu/apply}
             \item Hardware Description: \\
                 \myurl{https://crc.pitt.edu/Resource-Description-Proposal-Language}
+            \item Submit Citations: \\
+                \myurl{https://crc.pitt.edu/doi}
+            \item Submit Feedback: \\
+                \myurl{https://crc.pitt.edu/contact}
         \end{itemize}
     \end{center}
 
@@ -155,9 +159,9 @@
             \item Login Nodes: \code{h2p.crc.pitt.edu} or \code{htc.crc.pitt.edu}
             \item Jupyter Notebooks: \myurl{https://hub.crc.pitt.edu}
             \item Vizualization: \myurl{https://viz.crc.pitt.edu}
-            \item Open OnDemand: \myurl{...}
-            \item Galaxy: \myurl{...}
-            \item CLC Genomics: \myurl{...}
+            \item Open OnDemand: \myurl{https://ondemand.htc.crc.pitt.edu}
+            \item Galaxy: \myurl{https://crc.pitt.edu/galaxy}
+            \item CLC Genomics: \myurl{https://crc.pitt.edu/clcbioserver}
         \end{itemize}
     \end{center}
 
@@ -190,12 +194,13 @@
             \item Connect via secure shell \code{ssh <username>@h2p.crc.pitt.edu}
             \item Transferring data:
             \begin{itemize}
-                \item \code{scp <file> <username>@h2p.crc.pitt.edu:~ # local to remote}
-                \item \code{scp <username>@h2p.crc.pitt.edu:~/<file> . # remote to local}
+                \item \code{scp <file> <username>@h2p.crc.pitt.edu:~} \\
+                    \code{# local to remote}
+                \item \code{scp <username>@h2p.crc.pitt.edu:~/<file> .} \\
+                    \code{# remote to local}
             \end{itemize}
             \item Check your filesystem quotas: \code{crc-quota.py}
             \item Check your service units quotas: \code{crc-usage.pl}
-            \item Check the cluster status: \code{crc-sinfo.py}
         \end{itemize}
     \end{center}
 
@@ -204,7 +209,8 @@
     \Large    
     \begin{center}
         \begin{itemize}
-            \item Search all available software: \code{module spider # Use '/' for search, 'q' quits}
+            \item Search all available software: \code{module spider} \\
+                \code{# Use '/' for search, 'q' quits}
             \item Load a module: \code{module load <module>}
             \item List loaded modules: \code{module list}
             \item Purge your modules: \code{module purge}
@@ -250,6 +256,8 @@
             \item Cancel a job: \code{crc-scancel.py <jobid>}
             \item Submit an interactive job: \code{crc-interactive.py -s}
             \item Submit a batch job: \code{sbatch <file>}
+            \item Browse clusters and partitions: \code{crc-squeue.py}
+            \item Add this to the end of your batch scripts: \code{crc-job-stats.py}
             \item Example job scripts, browse \code{/ihome/crc/how_to_run}
             \item Description of \code{sbatch} arguments:
             \begin{itemize}
@@ -266,10 +274,12 @@
                 \item \code{--partition}: Run on this partition, try \code{crc-sinfo.py} to see partitions
                 \item \code{--mail-user}: Set to your Pitt email address to get updates (optional), pair with \code{--mail-type=END,FAIL}
             \end{itemize}
-            \item Reasons from \code{crc-squeue.py}
+            \item Reasons from \code{crc-squeue.py} (don't submit a ticket unless specified)
                 \begin{itemize}
                     \item \code{Priority}: You are waiting in line
-                    \item ...
+                    \item \code{MaxCPUPerAccount}: You are waiting in line because your group is running on too many cores
+                    \item \code{MaxMemoryPerAccount}: You are waiting in line because your group is using too much memory
+                    \item \code{GrpTresRunMinsLimit}: Your group is out of service units. Submit a ticket!
                 \end{itemize}
         \end{itemize}
     \end{center}
